@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceDiffuser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>FaceDiffuser</h1>
+        <h2>Speech-Driven 3D Facial Animation Synthesis Using Diffusion</h2>
+        <p>Stefan Stan, Kazi Injamamul Haque, Zerrin Yumak</p>
+        <p>Utrecht University</p>
+    </header>
+
+    <section id="abstract">
+        <h3>Abstract</h3>
+        <p>Speech-driven 3D facial animation synthesis has been a challenging task both in industry and research. Recent methods mostly focus on deterministic deep learning methods meaning that given a speech input, the output is always the same. However, in reality, the non-verbal facial cues that reside throughout the face are non-deterministic in nature. In addition, majority of the approaches focus on 3D vertex based datasets and methods that are compatible with existing facial animation pipelines with rigged characters is scarce. To eliminate these issues, we present FaceDiffuser, a non-deterministic deep learning model to generate speech-driven facial animations that is trained with both 3D vertex and blendshape based datasets. Our method is based on the diffusion technique and uses the pre-trained large speech representation model HuBERT to encode the audio input. To the best of our knowledge, we are the first to employ the diffusion method for the task of speech-driven 3D facial animation synthesis. We have run extensive objective and subjective analyses and show that our approach achieves better or comparable results in comparison to the state-of-the-art methods. We also introduce a new in-house dataset that is based on a blendshape based rigged character.</p>
+    </section>
+
+    <section id="video">
+        <h3>Video</h3>
+        <!-- Embed video here, example with a placeholder -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/your_video_id" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+
+    <section id="methodology">
+        <h3>Methodology - Training</h3>
+        <p>FaceDiffuser learns to denoise facial expressions and generate animations based on input speech. Audio speech embeddings from the pre-trained HuBERT model combined with embeddings from the noised ground truth animation sequence are used to train the Facial Decoder. The Facial Decoder is comprised of a sequence of GRU layers followed by a fully connected layer and learns to predict (i) vertex displacements or (ii) rig control (blendshape) values. The predicted sequence is compared with the ground truth sequence by computing the loss, which is then backpropagated to update the model parameters.</p>
+
+        <h3>Methodology - Inference</h3>
+        <p>FaceDiffuser inference is an iterative process from the maximum diffusion timestep T decreasing to 1. The initial noised animation input is represented by actual noise from the normal distribution. At each step, we provide the network with the audio and noised animation input. The predicted motion is then diffused again and fed to the next step of the iteration.</p>
+    </section>
+
+    <section id="bibtex">
+        <h3>BibTeX</h3>
+        <pre>
+@inproceedings{FaceDiffuser_Stan_MIG2023,
+author = {Stan, Stefan and Haque,  Kazi Injamamul and Yumak,  Zerrin},
+title = {FaceDiffuser: Speech-Driven 3D Facial Animation Synthesis Using Diffusion},
+booktitle = {ACM SIGGRAPH Conference on Motion, Interaction and Games (MIG '23), November 15--17, 2023, Rennes, France},
+year = {2023},
+location = {Rennes, France},
+numpages = {11},
+url = {https://doi.org/10.1145/3623264.3624447},
+doi = {10.1145/3623264.3624447},
+publisher = {ACM},
+address = {New York, NY, USA},
+}
+        </pre>
+    </section>
+
+    <footer>
+        <p>This website is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+        <p>Website based on the Nerfies project page. If you want to reuse their source code, please credit them appropriately.</p>
+    </footer>
+</body>
+</html>
