@@ -12,20 +12,21 @@ body {
 
 .container {
     max-width: 800px;
+    width: 90%; /* Ensures there is space on left and right regardless of screen size */
     padding: 2em;
     background: #fff;
     margin: 2em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center-align text */
 }
 
 header {
     background: #333;
     color: #fff;
     padding: 1em 0;
-    text-align: center;
 }
 
-header h1, header h2, header p {
+header h1, header p {
     margin: 0.2em;
 }
 
@@ -41,9 +42,13 @@ section h3 {
 footer {
     background: #f4f4f4;
     padding: 1em 0;
-    text-align: center;
 }
 
 footer p {
     margin: 0.5em;
+}
+
+pre {
+    text-align: left; /* BibTeX content aligns left for readability */
+    white-space: pre-wrap; /* Ensures the text wraps within the container */
 }
